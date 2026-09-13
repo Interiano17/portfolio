@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- PERSONAL DATA: SEO Meta Tags -->
+    <title>Pablo Interiano — Junior Software Developer</title>
+    <meta name="description" content="Portfolio of Pablo Interiano, a Junior Software Developer focused on full-stack web development, reliable business workflows, and responsive interfaces.">
+    <meta name="theme-color" content="#0A0908">
+    <meta property="og:title" content="Pablo Interiano — Junior Software Developer">
+    <meta property="og:description" content="Full-stack web development with Laravel, Angular, Node.js, PHP, and SQL.">
+    <meta property="og:type" content="website">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <!-- Anime.js CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <a href="#main-content" class="skip-link" data-i18n="skipLink">Skip to main content</a>
+    <div class="bg-grid" aria-hidden="true"></div>
+
+    <!-- ==========================================================================
+       NAVBAR
+       ========================================================================== -->
+    <header class="navbar" id="navbar">
+        <div class="container navbar-inner">
+            <!-- PERSONAL DATA: Logo -->
+            <a href="#hero" class="brand-logo" aria-label="Pablo Interiano Portfolio Home">
+                PI<span class="text-accent-dot">.</span>
+            </a>
+
+            <nav aria-label="Main Navigation" data-i18n-aria-label="mainNavigation">
+                <ul class="nav-links">
+                    <li><a href="#work" class="nav-link" data-i18n="navWork">Work</a></li>
+                    <li><a href="#process" class="nav-link" data-i18n="navProcess">How I Build</a></li>
+                    <li><a href="#experience" class="nav-link" data-i18n="navExperience">Experience</a></li>
+                    <li><a href="#technologies" class="nav-link" data-i18n="navTechnologies">Technologies</a></li>
+                    <li><a href="#about" class="nav-link" data-i18n="navAbout">About</a></li>
+                    <li><a href="#contact" class="nav-link" data-i18n="navContact">Contact</a></li>
+                </ul>
+            </nav>
+
+            <div class="nav-actions">
+                <label class="language-control">
+                    <span class="sr-only" data-i18n="languageLabel">Language</span>
+                    <select id="language-select" aria-label="Language" data-i18n-aria-label="languageLabel">
+                        <option value="en">EN</option>
+                        <option value="es">ES</option>
+                    </select>
+                </label>
+                <!-- Theme Switcher Button -->
+                <button class="theme-toggle" id="theme-toggle" aria-label="Switch visual theme" data-i18n-aria-label="themeToggle">
+                    <svg class="theme-icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+                    <svg class="theme-icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+                </button>
+
+                <a href="https://www.linkedin.com/in/pablo-interiano-6775442a5" class="btn btn-secondary" target="_blank" rel="noopener">LinkedIn ↗</a>
+
+                <button class="menu-toggle" id="menu-toggle" aria-label="Toggle navigation menu" data-i18n-aria-label="menuToggle" aria-expanded="false">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Navigation Drawer -->
+    <div class="mobile-nav" id="mobile-nav" aria-hidden="true">
+        <ul class="mobile-nav-links">
+            <li><a href="#work" class="mobile-nav-link" data-i18n="navWork">Work</a></li>
+            <li><a href="#process" class="mobile-nav-link" data-i18n="navProcess">How I Build</a></li>
+            <li><a href="#experience" class="mobile-nav-link" data-i18n="navExperience">Experience</a></li>
+            <li><a href="#technologies" class="mobile-nav-link" data-i18n="navTechnologies">Technologies</a></li>
+            <li><a href="#about" class="mobile-nav-link" data-i18n="navAbout">About</a></li>
+            <li><a href="#contact" class="mobile-nav-link" data-i18n="navContact">Contact</a></li>
+        </ul>
+        <a href="mailto:interianopablo@gmail.com" class="btn btn-primary" style="width: 100%;" data-i18n="emailMe">Email me ↗</a>
+    </div>
+
+    <main id="main-content">
+        <!-- ==========================================================================
+           01. HERO SECTION
+           ========================================================================== -->
+        <!-- PERSONAL DATA: Hero Section -->
+        <section class="hero" id="hero">
+            <svg class="art-layer hero-art" viewBox="0 0 1440 900" aria-hidden="true">
+                <path class="art-line art-line--wine" d="M-40 640C270 420 420 860 760 570S1160 210 1490 380"/>
+                <path class="art-line art-line--taupe" d="M80 150C340 80 410 330 670 250S1090 80 1390 170"/>
+                <circle class="art-ring art-ring--brass" cx="1120" cy="260" r="150"/>
+                <path class="art-arc art-line--wine" d="M1070 260a50 50 0 0 1 100 0"/>
+                <circle class="art-node art-node--wine" cx="760" cy="570" r="5"/>
+                <circle class="art-node art-node--brass" cx="1120" cy="410" r="4"/>
+                <text class="art-coordinate" x="90" y="145">14° 04' N / TEGUCIGALPA, HN</text>
+            </svg>
+            <div class="container hero-grid">
+                <div class="hero-content">
+                    <div class="hero-badge">
+                        <span class="status-dot"></span>
+                        <span data-i18n="heroBadge">JUNIOR SOFTWARE DEVELOPER · OPEN TO REMOTE OPPORTUNITIES</span>
+                    </div>
+                    <h1 class="hero-title">
+                        PABLO<br>INTERIANO<span class="text-accent-dot">.</span>
+                    </h1>
+                    <p class="hero-headline">
+                        <span data-i18n="heroHeadline">I build reliable web applications for real organizational workflows.</span>
+                    </p>
+                    <p class="hero-subline">
+                        Laravel · Angular · Node.js · SQL
+                    </p>
+                    <div class="hero-actions">
+                        <a href="#work" class="btn btn-primary" data-i18n="viewWork">View my work</a>
+                        <a href="https://www.linkedin.com/in/pablo-interiano-6775442a5" class="btn btn-secondary" target="_blank" rel="noopener">LinkedIn ↗</a>
+                    </div>
+                </div>
+
+                <!-- Interactive System Core -->
+                <div class="system-core-container" id="system-core">
+                    <svg class="system-core-svg" id="core-svg"></svg>
+                    <svg class="system-calibration" viewBox="0 0 100 100" aria-hidden="true">
+                        <circle cx="50" cy="50" r="42"></circle>
+                        <path d="M50 4v12M50 84v12M4 50h12M84 50h12"></path>
+                        <path d="M18 28a38 38 0 0 1 64-6"></path>
+                    </svg>
+                    <div class="core-center-node">PI.</div>
+                    <div class="system-meta system-meta--top">SYSTEM / ACTIVE</div>
+                    <div class="system-meta system-meta--bottom">BUILD / WEB APPLICATIONS</div>
+                    <div class="orbital-node" data-i18n-node="interfaces" data-detail="INTERFACES" data-copy="Responsive web interfaces built with Angular, React, Next.js, Livewire, HTML, and CSS." style="top: 14%; left: 17%;" tabindex="0" role="button" aria-pressed="false" aria-label="Interfaces">Interface</div>
+                    <div class="orbital-node" data-i18n-node="engineering" data-detail="BACKEND LOGIC" data-copy="Business workflows implemented with Laravel, Node.js, Express, PHP, and Django." style="top: 19%; right: 13%;" tabindex="0" role="button" aria-pressed="false" aria-label="Backend logic">Engineering</div>
+                    <div class="orbital-node" data-i18n-node="data" data-detail="DATABASES" data-copy="SQL Server, MySQL, stored procedures, reporting data, and validation safeguards." style="top: 51%; right: 6%;" tabindex="0" role="button" aria-pressed="false" aria-label="Databases">Data</div>
+                    <div class="orbital-node" data-i18n-node="systems" data-detail="DELIVERY" data-copy="Production work supported by Git, GitLab, Docker, Linux, Bash, and Scrum." style="bottom: 16%; right: 22%;" tabindex="0" role="button" aria-pressed="false" aria-label="Delivery">Systems</div>
+                    <div class="orbital-node" data-i18n-node="product" data-detail="OUTCOMES" data-copy="Organizational requirements translated into reliable and usable software solutions." style="bottom: 14%; left: 17%;" tabindex="0" role="button" aria-pressed="false" aria-label="Product outcomes">Product</div>
+                    <div class="system-inspector" id="system-inspector" aria-live="polite">
+                        <span class="system-inspector-label" data-i18n="systemReady">SYSTEM / READY</span>
+                        <p data-i18n="systemHint">Select a layer to inspect its role.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="scroll-indicator">
+                <span data-i18n="scroll">SCROLL</span>
+                <svg class="scroll-arrow" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
+            </div>
+        </section>
+
+        <!-- ==========================================================================
+           02. SELECTED WORK
+           ========================================================================== -->
+        <!-- PERSONAL DATA: Projects -->
+        <section class="section" id="work">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-label" data-i18n="workLabel">02 / SELECTED WORK</span>
+                    <h2 class="section-title"><span data-i18n="workTitle">Selected Work</span><span class="text-accent-dot">.</span></h2>
+                </div>
+
+                <div class="projects-stack">
+                    <!-- PROJECT 01 -->
+                    <article class="project-card project-card--one">
+                        <span class="project-ghost" aria-hidden="true">01</span>
+                        <svg class="art-layer project-art project-art--one" viewBox="0 0 800 600" aria-hidden="true">
+                            <circle class="art-ring art-ring--light" cx="560" cy="280" r="210"/>
+                            <path class="art-line art-line--light" d="M80 400H710M560 70V510"/>
+                            <path class="art-arc art-line--brass" d="M405 280a155 155 0 0 1 310 0"/>
+                            <circle class="art-node art-node--brass" cx="715" cy="280" r="7"/>
+                        </svg>
+                        <div class="project-info">
+                            <div class="project-meta">
+                                <span class="project-number">01</span>
+                                <span>/ 2026</span>
+                                <span data-i18n="projectOneMeta">· HUMAN RESOURCES SYSTEM</span>
+                            </div>
+                            <h3 class="project-title" data-i18n="projectOneTitle">Human Resources Management System</h3>
+                            <p class="project-description" data-i18n="projectOneDescription">
+                                Internal HR platform supporting employee, payroll, deductions, Honduran income tax, reporting, and validation workflows.
+                            </p>
+                            <div class="project-tags">
+                                <span class="tag-pill">Laravel</span>
+                                <span class="tag-pill">Livewire</span>
+                                <span class="tag-pill">JavaScript</span>
+                                <span class="tag-pill">SQL</span>
+                            </div>
+                            <p class="project-role" data-i18n="projectOneRole">ROLE / Full-stack development · Payroll and reporting workflows</p>
+                            <button class="btn btn-secondary open-modal" data-project="01" data-i18n="caseStudy">Explore case study ↗</button>
+                        </div>
+                        <div class="project-visual">
+                            <!-- Placeholder visual dashboard mockup -->
+                            <div class="mockup-header">
+                                <div class="mockup-dot"></div>
+                                <div class="mockup-dot"></div>
+                                <div class="mockup-dot"></div>
+                            </div>
+                            <div class="mockup-body">
+                                <div class="mockup-dash-grid">
+                                    <div class="mockup-card">
+                                        <div class="mockup-bar accent"></div>
+                                        <div class="mockup-bar w-80"></div>
+                                        <div class="mockup-bar w-40"></div>
+                                    </div>
+                                    <div class="mockup-card">
+                                        <div class="mockup-bar w-80"></div>
+                                        <div class="mockup-bar w-40"></div>
+                                    </div>
+                                </div>
+                                <div class="mockup-card" style="flex: 1;">
+                                    <div class="mockup-bar w-40"></div>
+                                    <div class="mockup-bar w-80"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- PROJECT 02 -->
+                    <article class="project-card reverse project-card--two">
+                        <span class="project-ghost" aria-hidden="true">02</span>
+                        <svg class="art-layer project-art project-art--two" viewBox="0 0 800 600" aria-hidden="true">
+                            <path class="art-line art-line--sage" d="M80 90V510M150 90V510M220 90V510M290 90V510M360 90V510"/>
+                            <path class="art-line art-line--sage" d="M80 440C220 300 350 510 510 350S650 220 760 310"/>
+                            <circle class="art-node art-node--sage" cx="510" cy="350" r="6"/>
+                            <rect class="art-shape art-shape--sage" x="570" y="90" width="120" height="180"/>
+                        </svg>
+                        <div class="project-info">
+                            <div class="project-meta">
+                                <span class="project-number">02</span>
+                                <span>/ 2025–2026</span>
+                                <span data-i18n="projectTwoMeta">· UNIVERSITY RESEARCH PLATFORM</span>
+                            </div>
+                            <h3 class="project-title" data-i18n="projectTwoTitle">SICIHT Research Management Platform</h3>
+                            <p class="project-description" data-i18n="projectTwoDescription">
+                                University platform for project registration, requests, expected results, file repositories, notifications, and administrative research workflows.
+                            </p>
+                            <div class="project-tags">
+                                <span class="tag-pill">Angular</span>
+                                <span class="tag-pill">Node.js</span>
+                                <span class="tag-pill">Express</span>
+                                <span class="tag-pill">SQL Server</span>
+                            </div>
+                            <p class="project-role" data-i18n="projectTwoRole">ROLE / Full-stack development · Database and administrative workflows</p>
+                            <button class="btn btn-secondary open-modal" data-project="02" data-i18n="caseStudy">Explore case study ↗</button>
+                        </div>
+                        <div class="project-visual">
+                            <!-- Placeholder visual code editor mockup -->
+                            <div class="mockup-header">
+                                <div class="mockup-dot"></div>
+                                <div class="mockup-dot"></div>
+                                <div class="mockup-dot"></div>
+                            </div>
+                            <div class="mockup-body">
+                                <div class="mockup-code-lines">
+                                    <div class="code-line"><span class="code-num">01</span><span><span class="code-kw">import</span> async_engine <span class="code-kw">from</span> "core"</span></div>
+                                    <div class="code-line"><span class="code-num">02</span><span><span class="code-kw">const</span> pipeline = <span class="code-kw">new</span> Pipeline({</span></div>
+                                    <div class="code-line"><span class="code-num">03</span><span>&nbsp;&nbsp;workers: 8,</span></div>
+                                    <div class="code-line"><span class="code-num">04</span><span>&nbsp;&nbsp;timeout: <span class="code-str">3000ms</span></span></div>
+                                    <div class="code-line"><span class="code-num">05</span><span>});</span></div>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- PROJECT 03 -->
+                    <article class="project-card project-card--three">
+                        <span class="project-ghost" aria-hidden="true">03</span>
+                        <svg class="art-layer project-art project-art--three" viewBox="0 0 800 600" aria-hidden="true">
+                            <path class="art-line art-line--brass" d="M90 110H710M90 210H710M90 310H710"/>
+                            <rect class="art-shape art-shape--brass" x="470" y="110" width="130" height="100"/>
+                            <rect class="art-shape art-shape--brass" x="610" y="220" width="90" height="90"/>
+                            <path class="art-line art-line--brass" d="M160 80V340M440 80V340"/>
+                            <circle class="art-node art-node--brass" cx="440" cy="210" r="6"/>
+                        </svg>
+                        <div class="project-info">
+                            <div class="project-meta">
+                                <span class="project-number">03</span>
+                                <span>/ 2025</span>
+                                <span data-i18n="projectThreeMeta">· UNIVERSITY PLATFORM</span>
+                            </div>
+                            <h3 class="project-title" data-i18n="projectThreeTitle">UNAH University Linkage Platform</h3>
+                            <p class="project-description" data-i18n="projectThreeDescription">
+                                Production university platform supporting course offering, registration, completed-course validation, and microcredential workflows.
+                            </p>
+                            <div class="project-tags">
+                                <span class="tag-pill">Next.js</span>
+                                <span class="tag-pill">React</span>
+                                <span class="tag-pill">Responsive UI</span>
+                                <span class="tag-pill">Frontend</span>
+                            </div>
+                            <p class="project-role" data-i18n="projectThreeRole">ROLE / Frontend development · Responsive interfaces</p>
+                            <button class="btn btn-secondary open-modal" data-project="03" data-i18n="caseStudy">Explore case study ↗</button>
+                        </div>
+                        <div class="project-visual">
+                            <div class="mockup-header">
+                                <div class="mockup-dot"></div>
+                                <div class="mockup-dot"></div>
+                                <div class="mockup-dot"></div>
+                            </div>
+                            <div class="mockup-body">
+                                <div class="mockup-card" style="height: 100%; display: flex; flex-direction: column; justify-content: space-between;">
+                                    <div class="mockup-bar accent w-40"></div>
+                                    <div class="mockup-bar w-80"></div>
+                                    <div class="mockup-bar w-80"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- PROJECT 04 -->
+                    <article class="project-card reverse project-card--four">
+                        <span class="project-ghost" aria-hidden="true">04</span>
+                        <svg class="art-layer project-art project-art--four" viewBox="0 0 800 600" aria-hidden="true">
+                            <path class="art-line art-line--wine" d="M40 400C160 190 300 560 430 320S620 170 770 390"/>
+                            <path class="art-line art-line--taupe" d="M40 440C170 230 310 600 450 360S640 210 770 430"/>
+                            <circle class="art-node art-node--wine" cx="430" cy="320" r="7"/>
+                            <circle class="art-node art-node--taupe" cx="620" cy="210" r="5"/>
+                        </svg>
+                        <div class="project-info">
+                            <div class="project-meta">
+                                <span class="project-number">04</span>
+                                <span>/ 2026</span>
+                                <span data-i18n="projectFourMeta">· INTERNAL SUPPORT SYSTEM</span>
+                            </div>
+                            <h3 class="project-title" data-i18n="projectFourTitle">Internal Service Desk</h3>
+                            <p class="project-description" data-i18n="projectFourDescription">
+                                Internal ticketing system centralizing the registration, assignment, tracking, and resolution of technical support requests.
+                            </p>
+                            <div class="project-tags">
+                                <span class="tag-pill">Django</span>
+                                <span class="tag-pill">Python</span>
+                                <span class="tag-pill">SQL</span>
+                                <span class="tag-pill">Service Desk</span>
+                            </div>
+                            <p class="project-role" data-i18n="projectFourRole">ROLE / Full-stack development · Support request workflows</p>
+                            <button class="btn btn-secondary open-modal" data-project="04" data-i18n="caseStudy">Explore case study ↗</button>
+                        </div>
+                        <div class="project-visual">
+                            <div class="mockup-header">
+                                <div class="mockup-dot"></div>
+                                <div class="mockup-dot"></div>
+                                <div class="mockup-dot"></div>
+                            </div>
+                            <div class="mockup-body">
+                                <div class="mockup-dash-grid">
+                                    <div class="mockup-card">
+                                        <div class="mockup-bar w-80"></div>
+                                        <div class="mockup-bar accent w-40"></div>
+                                    </div>
+                                    <div class="mockup-card">
+                                        <div class="mockup-bar w-80"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================================================
+           03. HOW I BUILD
+           ========================================================================== -->
+        <section class="section" id="process">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-label" data-i18n="processLabel">03 / HOW I BUILD</span>
+                    <h2 class="section-title"><span data-i18n="processTitle">How I Build</span><span class="text-accent-dot">.</span></h2>
+                </div>
+
+                <div class="process-grid">
+                    <div class="process-card">
+                        <span class="process-num">01</span>
+                        <h3 class="process-title" data-i18n="processUnderstand">UNDERSTAND</h3>
+                        <p class="process-desc" data-i18n="processUnderstandDescription">
+                            I start by understanding the problem, business goals, and constraints before choosing the technology stack.
+                        </p>
+                    </div>
+                    <div class="process-card">
+                        <span class="process-num">02</span>
+                        <h3 class="process-title" data-i18n="processBuild">BUILD</h3>
+                        <p class="process-desc" data-i18n="processBuildDescription">
+                            I care about maintainable code, type safety, usable interfaces, and predictable, deterministic behavior.
+                        </p>
+                    </div>
+                    <div class="process-card">
+                        <span class="process-num">03</span>
+                        <h3 class="process-title" data-i18n="processIterate">ITERATE</h3>
+                        <p class="process-desc" data-i18n="processIterateDescription">
+                            Ship fast, gather real metrics, refine continuously, and evolve systems based on genuine usage data.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================================================
+           04. EXPERIENCE
+           ========================================================================== -->
+        <!-- PERSONAL DATA: Experience Timeline -->
+        <section class="section" id="experience">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-label" data-i18n="experienceLabel">04 / EXPERIENCE</span>
+                    <h2 class="section-title"><span data-i18n="experienceTitle">Experience</span><span class="text-accent-dot">.</span></h2>
+                </div>
+
+                <div class="timeline">
+                    <!-- Item 1 -->
+                    <div class="timeline-item">
+                        <div class="timeline-year">2026</div>
+                        <div class="timeline-content">
+                            <h3 class="timeline-role" data-i18n="coveloRole">Software Developer Intern</h3>
+                            <div class="timeline-company" data-i18n="coveloCompany">Fundación COVELO · Tegucigalpa, Honduras · Jun 2026 – Present</div>
+                            <ul class="timeline-bullets">
+                                <li data-i18n="coveloOne">Developing an internal Service Desk ticketing system with Django and Python for technical support workflows.</li>
+                                <li data-i18n="coveloTwo">Building HR management features with Laravel, Livewire, JavaScript, and SQL for employee, payroll, and reporting processes.</li>
+                                <li data-i18n="coveloThree">Implemented payroll deductions and Honduran income tax calculations with validation and duplicate-record safeguards.</li>
+                                <li data-i18n="coveloFour">Developed report filters and exports, plus responsive WordPress components and production website optimizations.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Item 2 -->
+                    <div class="timeline-item">
+                        <div class="timeline-year">2025</div>
+                        <div class="timeline-content">
+                            <h3 class="timeline-role" data-i18n="sicihtRole">Full Stack Developer Intern</h3>
+                            <div class="timeline-company" data-i18n="sicihtCompany">SICIHT UNAH · Tegucigalpa, Honduras · Nov 2025 – Mar 2026</div>
+                            <ul class="timeline-bullets">
+                                <li data-i18n="sicihtOne">Developed and maintained university research management functionality with Angular, Node.js, Express, and SQL Server.</li>
+                                <li data-i18n="sicihtTwo">Created database tables, stored procedures, and queries for registrations, requests, repositories, and notifications.</li>
+                                <li data-i18n="sicihtThree">Delivered coordinated frontend, backend, and database changes for administrative workflows using Git and GitLab.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Item 3 -->
+                    <div class="timeline-item">
+                        <div class="timeline-year">2025</div>
+                        <div class="timeline-content">
+                            <h3 class="timeline-role" data-i18n="unahRole">Frontend Developer</h3>
+                            <div class="timeline-company" data-i18n="unahCompany">UNAH University Linkage Platform · 2025</div>
+                            <ul class="timeline-bullets">
+                                <li data-i18n="unahOne">Developed responsive production interfaces with Next.js for course registration and validation workflows.</li>
+                                <li data-i18n="unahTwo">Supported course offerings, completed-course validation, and microcredential processes.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================================================
+           05. TECHNOLOGIES
+           ========================================================================== -->
+        <!-- PERSONAL DATA: Technologies -->
+        <section class="section" id="technologies">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-label" data-i18n="technologiesLabel">05 / TECHNOLOGIES</span>
+                    <h2 class="section-title"><span data-i18n="technologiesTitle">Tools I Work With</span><span class="text-accent-dot">.</span></h2>
+                </div>
+                <svg class="art-layer tech-art" viewBox="0 0 600 460" aria-hidden="true">
+                    <path class="art-line art-line--wine" d="M40 330C140 220 210 410 315 300S450 180 560 250"/>
+                    <path class="art-line art-line--brass" d="M40 100H560M40 150H560M40 200H560"/>
+                    <circle class="art-node art-node--sage" cx="315" cy="300" r="8"/>
+                    <circle class="art-node art-node--brass" cx="450" cy="180" r="5"/>
+                    <text class="art-coordinate" x="42" y="80" data-i18n="toolchainMap">TOOLCHAIN / SIGNAL MAP</text>
+                </svg>
+
+                <div class="tech-grid">
+                    <!-- Category: Frontend -->
+                    <div>
+                        <h3 class="tech-category-title">Frontend</h3>
+                        <ul class="tech-list">
+                            <li class="tech-item"><span class="tech-name"><span class="tech-logo">Ng</span>Angular</span> <span class="tech-idx">01</span></li>
+                            <li class="tech-item"><span class="tech-name"><span class="tech-logo">R/N</span>React / Next.js</span> <span class="tech-idx">02</span></li>
+                            <li class="tech-item"><span class="tech-name"><span class="tech-logo">JS</span>JavaScript / TypeScript</span> <span class="tech-idx">03</span></li>
+                            <li class="tech-item"><span class="tech-name"><span class="tech-logo">H/C</span>HTML5 / CSS3</span> <span class="tech-idx">04</span></li>
+                        </ul>
+                    </div>
+
+                    <!-- Category: Backend -->
+                    <div>
+                        <h3 class="tech-category-title">Backend</h3>
+                        <ul class="tech-list">
+                            <li class="tech-item"><span class="tech-name"><span class="tech-logo">La</span>Laravel / Livewire / PHP</span> <span class="tech-idx">01</span></li>
+                            <li class="tech-item"><span class="tech-name"><span class="tech-logo">N</span>Node.js / Express</span> <span class="tech-idx">02</span></li>
+                            <li class="tech-item"><span class="tech-name"><span class="tech-logo">Dj</span>Django / Python</span> <span class="tech-idx">03</span></li>
+                            <li class="tech-item"><span class="tech-name"><span class="tech-logo">API</span>REST APIs</span> <span class="tech-idx">04</span></li>
+                        </ul>
+                    </div>
+
+                    <!-- Category: Data -->
+                    <div>
+                        <h3 class="tech-category-title" data-i18n="dataCategory">Data</h3>
+                        <ul class="tech-list">
+                            <li class="tech-item"><span class="tech-name"><span class="tech-logo">SQL</span>SQL Server</span> <span class="tech-idx">01</span></li>
+                            <li class="tech-item"><span class="tech-name"><span class="tech-logo">My</span>MySQL</span> <span class="tech-idx">02</span></li>
+                            <li class="tech-item"><span class="tech-name"><span class="tech-logo">SP</span><span data-i18n="storedProcedures">Stored Procedures</span></span> <span class="tech-idx">03</span></li>
+                            <li class="tech-item"><span class="tech-name"><span class="tech-logo">SQL</span>SQL</span> <span class="tech-idx">04</span></li>
+                        </ul>
+                    </div>
+
+                    <!-- Category: Tools -->
+                    <div>
+                        <h3 class="tech-category-title" data-i18n="toolsCategory">Tools</h3>
+                        <ul class="tech-list">
+                            <li class="tech-item"><span class="tech-name"><span class="tech-logo">G</span>Git / GitLab</span> <span class="tech-idx">01</span></li>
+                            <li class="tech-item"><span class="tech-name"><span class="tech-logo">Do</span>Docker</span> <span class="tech-idx">02</span></li>
+                            <li class="tech-item"><span class="tech-name"><span class="tech-logo">Lx</span>Linux / Bash</span> <span class="tech-idx">03</span></li>
+                            <li class="tech-item"><span class="tech-name"><span class="tech-logo">Sc</span>Scrum</span> <span class="tech-idx">04</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================================================
+           06. ABOUT
+           ========================================================================== -->
+        <!-- PERSONAL DATA: About -->
+        <section class="section" id="about">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-label" data-i18n="aboutLabel">06 / ABOUT</span>
+                    <h2 class="section-title"><span data-i18n="aboutTitle">Behind the Code</span><span class="text-accent-dot">.</span></h2>
+                </div>
+                <!-- OPTIONAL PERSONAL PORTRAIT: place an image inside .portrait-slot when available. -->
+                <div class="portrait-slot" aria-hidden="true"></div>
+                <svg class="art-layer about-art" viewBox="0 0 650 620" aria-hidden="true">
+                    <path class="art-shape art-shape--wine" d="M150 110C260 15 490 80 500 230S375 420 470 530 210 650 120 480 45 200 150 110Z"/>
+                    <path class="art-line art-line--sage" d="M110 430C220 300 310 560 500 330"/>
+                    <circle class="art-ring art-ring--brass" cx="410" cy="210" r="94"/>
+                    <circle class="art-node art-node--brass" cx="500" cy="330" r="7"/>
+                </svg>
+
+                <div class="about-layout">
+                    <div>
+                        <p class="about-text" data-i18n="aboutText">
+                            Systems Engineering student with hands-on experience building and maintaining web applications with Laravel, Livewire, Angular, Node.js, PHP, and SQL. I translate organizational requirements into reliable software through business logic, REST APIs, database development, responsive interfaces, and production work.
+                        </p>
+
+                        <div class="about-meta-grid">
+                            <div>
+                                <div class="meta-label" data-i18n="basedIn">Based in</div>
+                                <div class="meta-value">Tegucigalpa, Honduras</div>
+                            </div>
+                            <div>
+                                <div class="meta-label" data-i18n="languages">Languages</div>
+                                <div class="meta-value" data-i18n="spokenLanguages">Spanish · English B2 · French A2</div>
+                            </div>
+                            <div>
+                                <div class="meta-label" data-i18n="focus">Focus</div>
+                                <div class="meta-value" data-i18n="focusValue">Full-stack Web Development</div>
+                            </div>
+                            <div>
+                                <div class="meta-label" data-i18n="status">Status</div>
+                                <div class="meta-value" data-i18n="statusValue">Open to remote opportunities</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h3 class="off-keyboard-title" data-i18n="educationTitle">EDUCATION &amp; CERTIFICATION</h3>
+                        <div class="off-keyboard-cards">
+                            <div class="interest-card">
+                                <span class="interest-name" data-i18n="unahEducation">UNAH · Systems Engineering</span>
+                                <span class="interest-detail" data-i18n="unahDate">2021 – Expected Mar 2027</span>
+                            </div>
+                            <div class="interest-card">
+                                <span class="interest-name" data-i18n="frontEndCertification">Front-End Development</span>
+                                <span class="interest-detail">CADERH · 2022 – 2023</span>
+                            </div>
+                            <div class="interest-card">
+                                <span class="interest-name">Metropolitan School</span>
+                                <span class="interest-detail" data-i18n="bilingualProgram">Bilingual Program · 2021</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================================================
+           07. CONTACT / FOOTER
+           ========================================================================== -->
+        <!-- PERSONAL DATA: Contact Footer -->
+        <section class="section contact-section" id="contact">
+            <div class="container">
+                <svg class="art-layer contact-art" viewBox="0 0 1300 850" aria-hidden="true">
+                    <circle class="art-shape art-shape--wine" cx="1060" cy="260" r="240"/>
+                    <circle class="art-ring art-ring--brass" cx="1060" cy="260" r="310"/>
+                    <path class="art-line art-line--sage" d="M630 660H1220"/>
+                    <circle class="art-node art-node--wine" cx="1220" cy="660" r="8"/>
+                    <text class="art-pi" x="975" y="330">PI.</text>
+                </svg>
+                <span class="section-label" data-i18n="contactLabel">07 / CONTACT</span>
+                <h2 class="contact-heading">
+                    <span class="contact-word" data-i18n="contactLineOne">LET'S BUILD</span>
+                    <span class="contact-word" data-i18n="contactLineTwo">SOMETHING</span>
+                    <span class="contact-word contact-word--accent"><span data-i18n="contactLineThree">USEFUL</span><span class="brand-dot">.</span></span>
+                </h2>
+                <p class="contact-sub" data-i18n="contactSub">
+                    Have a junior software development opportunity, web application, or organizational workflow worth improving? Let's talk.
+                </p>
+
+                <div class="contact-links">
+                    <a href="mailto:interianopablo@gmail.com"><span data-i18n="email">Email</span> <span>interianopablo@gmail.com ↗</span></a>
+                    <a href="tel:+50498338468"><span data-i18n="phone">Phone</span> <span>+504 9833-8468 ↗</span></a>
+                    <a href="https://www.linkedin.com/in/pablo-interiano-6775442a5" target="_blank" rel="noopener">LinkedIn <span data-i18n="connect">Connect ↗</span></a>
+                    <a href="https://github.com/Interiano17" target="_blank" rel="noopener">GitHub <span data-i18n="viewCode">View code ↗</span></a>
+                    <a href="https://interiano17.github.io/portfolio/" target="_blank" rel="noopener"><span data-i18n="portfolio">Portfolio</span> <span data-i18n="visitSite">Visit site ↗</span></a>
+                </div>
+
+                <div class="footer-bottom">
+                    <div data-i18n="copyright">© 2026 Pablo Interiano. All rights reserved.</div>
+                    <div data-i18n="builtWith">Built with HTML, CSS, JavaScript & Anime.js</div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Modal Lightbox -->
+    <div class="modal-overlay" id="modal-overlay" aria-hidden="true">
+        <div class="modal-container" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+            <button class="modal-close" id="modal-close" aria-label="Close modal" data-i18n-aria-label="closeModal">✕</button>
+            <h3 class="project-title" id="modal-title" data-i18n="caseStudyOverview">Case Study Overview</h3>
+            <p class="project-description" id="modal-body" style="margin-top: 16px;" data-i18n="modalBody">
+                Project details are available on request.
+            </p>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast">
+        <span data-i18n="easterEgg">Achievement unlocked: You found the easter egg.</span>
+    </div>
+
+    <!-- ==========================================================================
+       JAVASCRIPT LOGIC
+       ========================================================================== -->
+    <script src="js/script.js"></script>
+</body>
+</html>
