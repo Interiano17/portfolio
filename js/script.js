@@ -179,6 +179,7 @@ function initPlanetExperience(reducedMotion) {
     controls.enablePan = false;
     controls.minPolarAngle = Math.PI / 4;
     controls.maxPolarAngle = Math.PI / 1.5;
+    controls.enabled = window.matchMedia("(pointer: fine)").matches;
 
     let targetRotationY = 0;
     let targetRotationX = 0;
