@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Experiencia Espacial - Saturno Interactivo</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&display=swap" rel="stylesheet">
+    
+    <!-- Three.js Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <!-- OrbitControls -->
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+
+    <style>
+        body {
+            margin: 0;
+            background-color: #050505; /* Fondo negro profundo */
+            color: #ffffff;
+            font-family: 'Space Grotesk', sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* Ocultar scrollbar para un look más inmersivo pero mantener la funcionalidad */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #050505;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #333;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+
+        /* Utilidad para gradientes de texto */
+        .text-gradient {
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-image: linear-gradient(to right, #a855f7, #3b82f6, #2dd4bf);
+        }
+
+        /* Configuración del contenedor pegajoso */
+        #canvas-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            cursor: grab;
+        }
+        
+        #canvas-container:active {
+            cursor: grabbing;
+        }
+
+        .content-layer {
+            position: relative;
+            z-index: 10;
+            pointer-events: none; /* Para que el ratón pueda interactuar con el canvas debajo */
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Sección 1: Introducción -->
+    <section class="h-screen flex flex-col items-center justify-center relative z-10 bg-gradient-to-b from-black via-zinc-900/20 to-transparent px-6 text-center">
+        <h1 class="text-5xl md:text-7xl font-bold mb-6 tracking-tighter">
+            Explora el <span class="text-gradient">Cosmos</span>
+        </h1>
+        <p class="text-lg md:text-xl text-zinc-400 max-w-2xl font-light leading-relaxed mb-12">
+            Desplázate hacia abajo para descubrir los gigantes gaseosos. Nuestra experiencia tridimensional reacciona a tu navegación.
+        </p>
+        
+        <!-- Indicador de Scroll -->
+        <div class="animate-bounce flex flex-col items-center opacity-70">
+            <span class="text-xs uppercase tracking-[0.3em] text-zinc-500 mb-3">Scroll</span>
+            <div class="w-[1px] h-12 bg-gradient-to-b from-zinc-400 to-transparent"></div>
+        </div>
+    </section>
+
+    <!-- Sección 2: Contenedor Sticky para la animación 3D controlada por Scroll -->
+    <section id="scroll-tracker" class="relative h-[300vh]">
+        <!-- Este div se queda pegado en la pantalla mientras scrolleamos los 300vh -->
+        <div class="sticky top-0 h-screen w-full overflow-hidden flex items-center justify-center">
+            
+            <!-- Aquí se renderiza Three.js -->
+            <div id="canvas-container"></div>
+            
+            <!-- Superposición de UI (Pointer events none para no bloquear el drag 3D) -->
+            <div class="content-layer absolute inset-0 flex flex-col justify-between p-8 md:p-16">
+                <div class="self-start">
+                    <h2 class="text-3xl md:text-5xl font-bold opacity-0 transition-opacity duration-700" id="planet-title">
+                        Aethelgard-9
+                    </h2>
+                    <p class="text-zinc-400 mt-2 max-w-md opacity-0 transition-opacity duration-700 delay-100" id="planet-desc">
+                        Un exoplaneta anillado con tormentas de plasma e interacciones magnéticas extremas. Usa tu cursor para explorar su órbita.
+                    </p>
+                </div>
+                
+                <div class="self-end text-right">
+                    <div class="inline-flex items-center space-x-3 bg-black/40 backdrop-blur-md border border-white/10 rounded-full px-5 py-2 text-sm text-zinc-300">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-purple-400 animate-pulse" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122" />
+                        </svg>
+                        <span>Arrastra para Orbitar</span>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </section>
+
+    <!-- Sección 3: Conclusión -->
+    <section class="h-screen flex flex-col items-center justify-center relative z-10 bg-gradient-to-t from-black via-[#0a0a0a] to-transparent px-6 text-center">
+        <h2 class="text-4xl md:text-5xl font-bold mb-6">
+            Más allá de las <span class="text-gradient">Estrellas</span>
+        </h2>
+        <p class="text-lg text-zinc-400 max-w-2xl font-light leading-relaxed">
+            La integración de gráficos 3D acelerados por GPU directamente en el flujo de lectura crea experiencias web inmersivas y memorables sin interrumpir al usuario.
+        </p>
+        <button class="mt-10 px-8 py-3 rounded-full bg-white text-black font-semibold hover:bg-zinc-200 transition-colors cursor-pointer pointer-events-auto">
+            Descubrir Más
+        </button>
+    </section>
+
+    <script>
+        // Variables globales Three.js
+        let scene, camera, renderer, controls;
+        let planetGroup; // Grupo que contendrá el planeta y los anillos
+        let stars;
+        
+        // Variables de interacción
+        let scrollProgress = 0;
+        let targetRotationY = 0;
+        let targetRotationX = 0;
+
+        // Referencias del DOM
+        const scrollTracker = document.getElementById('scroll-tracker');
+        const planetTitle = document.getElementById('planet-title');
+        const planetDesc = document.getElementById('planet-desc');
+
+        // Inicializar la aplicación
+        function init() {
+            const container = document.getElementById('canvas-container');
+
+            // 1. Escena
+            scene = new THREE.Scene();
+            scene.fog = new THREE.FogExp2(0x050505, 0.015); // Niebla para desvanecer bordes
+
+            // 2. Cámara
+            camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
+            camera.position.set(0, 2, 18); // Posición inicial alejada
+
+            // 3. Renderizador (Alta calidad y fondo transparente)
+            renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+            renderer.toneMapping = THREE.ACESFilmicToneMapping;
+            renderer.toneMappingExposure = 1.2;
+            container.appendChild(renderer.domElement);
+
+            // 4. Controles (OrbitControls para interactividad del usuario)
+            controls = new THREE.OrbitControls(camera, renderer.domElement);
+            controls.enableDamping = true; // Movimiento suave
+            controls.dampingFactor = 0.05;
+            controls.enableZoom = false; // Desactivar zoom para no interrumpir el scroll
+            controls.enablePan = false;  // Mantener el planeta en el centro
+            // Limitar la rotación vertical para no ver los anillos de canto extremo
+            controls.minPolarAngle = Math.PI / 4;
+            controls.maxPolarAngle = Math.PI / 1.5;
+
+            buildSceneObjects();
+            buildLighting();
+            buildStarfield();
+
+            // Event Listeners
+            window.addEventListener('resize', onWindowResize);
+            window.addEventListener('scroll', onScroll);
+
+            // Trigger scroll inicial para calcular opacidades
+            onScroll();
+
+            // Iniciar ciclo de animación
+            animate();
+        }
+
+        // Generar una textura de bandas horizontales (Gas Giant) proceduralmente
+        function createPlanetTexture() {
+            const canvas = document.createElement('canvas');
+            canvas.width = 512;
+            canvas.height = 512;
+            const ctx = canvas.getContext('2d');
+
+            // Fondo base oscuro
+            ctx.fillStyle = '#0f172a';
+            ctx.fillRect(0, 0, 512, 512);
+
+            // Generar bandas de gas aleatorias pero controladas
+            for (let i = 0; i < 200; i++) {
+                const y = Math.random() * 512;
+                const height = Math.random() * 15 + 1;
+                
+                // Paleta Sci-Fi: Púrpuras, Azules, Cianes y algo de Rosa
+                const colors = [
+                    'rgba(56, 189, 248, 0.15)',  // Cyan
+                    'rgba(168, 85, 247, 0.1)',   // Purple
+                    'rgba(129, 140, 248, 0.15)', // Indigo
+                    'rgba(244, 63, 94, 0.05)'    // Rose/Pink (muy sutil)
+                ];
+                
+                ctx.fillStyle = colors[Math.floor(Math.random() * colors.length)];
+                ctx.fillRect(0, y, 512, height);
+            }
+
+            // Añadir un gradiente general para dar volumen a los polos
+            const grad = ctx.createLinearGradient(0, 0, 0, 512);
+            grad.addColorStop(0, 'rgba(0,0,0,0.6)');
+            grad.addColorStop(0.2, 'rgba(0,0,0,0)');
+            grad.addColorStop(0.8, 'rgba(0,0,0,0)');
+            grad.addColorStop(1, 'rgba(0,0,0,0.6)');
+            ctx.fillStyle = grad;
+            ctx.fillRect(0, 0, 512, 512);
+
+            const texture = new THREE.CanvasTexture(canvas);
+            texture.anisotropy = renderer.capabilities.getMaxAnisotropy();
+            return texture;
+        }
+
+        function buildSceneObjects() {
+            // Grupo principal que rotaremos con el scroll
+            planetGroup = new THREE.Group();
+            // Inclinación característica de los planetas
+            planetGroup.rotation.z = Math.PI / 8; 
+            scene.add(planetGroup);
+
+            // 1. Esfera del Planeta
+            const planetGeo = new THREE.SphereGeometry(3, 64, 64);
+            const planetMat = new THREE.MeshStandardMaterial({
+                map: createPlanetTexture(),
+                roughness: 0.6,
+                metalness: 0.1,
+            });
+            const planet = new THREE.Mesh(planetGeo, planetMat);
+            planetGroup.add(planet);
+
+            // 2. Sistema de Anillos
+            // Crearemos múltiples anillos finos para un look complejo
+            const ringColors = [0x38bdf8, 0xa855f7, 0x818cf8, 0x1e293b];
+            
+            for (let i = 0; i < 6; i++) {
+                // Radio interno, externo, segmentos
+                const innerRadius = 4.2 + (i * 0.4);
+                const outerRadius = innerRadius + 0.2 + (Math.random() * 0.15);
+                
+                const ringGeo = new THREE.RingGeometry(innerRadius, outerRadius, 128);
+                
+                // Rotar el anillo para que quede plano respecto al ecuador del planeta
+                // RingGeometry se dibuja en el plano XY, lo rotamos al plano XZ
+                
+                // Posicionar UVs para texturizado procedural del anillo
+                let pos = ringGeo.attributes.position;
+                let v3 = new THREE.Vector3();
+                for (let j = 0; j < pos.count; j++){
+                    v3.fromBufferAttribute(pos, j);
+                    ringGeo.attributes.uv.setXY(j, v3.length() < (innerRadius + (outerRadius-innerRadius)/2) ? 0 : 1, 1);
+                }
+
+                const ringMat = new THREE.MeshStandardMaterial({
+                    color: ringColors[i % ringColors.length],
+                    side: THREE.DoubleSide,
+                    transparent: true,
+                    opacity: 0.4 + (Math.random() * 0.4),
+                    roughness: 0.4,
+                    metalness: 0.8
+                });
+                
+                const ring = new THREE.Mesh(ringGeo, ringMat);
+                ring.rotation.x = Math.PI / 2; // Acostar el anillo
+                
+                // Variación sutil en altura para efecto 3D
+                ring.position.y = (Math.random() - 0.5) * 0.05;
+                
+                planetGroup.add(ring);
+            }
+        }
+
+        function buildLighting() {
+            // Luz ambiental tenue (color azul cósmico)
+            const ambientLight = new THREE.AmbientLight(0x0f172a, 1.5);
+            scene.add(ambientLight);
+
+            // Luz direccional principal (El "Sol")
+            const mainLight = new THREE.DirectionalLight(0xffffff, 3);
+            mainLight.position.set(10, 5, 5);
+            scene.add(mainLight);
+
+            // Luz de borde (Rim Light) para resaltar la silueta desde atrás
+            const rimLight = new THREE.SpotLight(0xa855f7, 4);
+            rimLight.position.set(-10, 5, -10);
+            rimLight.lookAt(0, 0, 0);
+            scene.add(rimLight);
+            
+            // Luz inferior sutil (rebote de los anillos)
+            const fillLight = new THREE.DirectionalLight(0x38bdf8, 0.8);
+            fillLight.position.set(0, -10, 0);
+            scene.add(fillLight);
+        }
+
+        function buildStarfield() {
+            const starGeo = new THREE.BufferGeometry();
+            const starCount = 3000;
+            const starPos = new Float32Array(starCount * 3);
+            const starColors = new Float32Array(starCount * 3);
+
+            const color1 = new THREE.Color(0xffffff); // Blanco
+            const color2 = new THREE.Color(0x38bdf8); // Cyan claro
+            const color3 = new THREE.Color(0xc084fc); // Púrpura claro
+
+            for(let i=0; i < starCount; i++) {
+                // Posición esférica aleatoria
+                const r = 50 + Math.random() * 150;
+                const theta = Math.random() * Math.PI * 2;
+                const phi = Math.acos(Math.random() * 2 - 1);
+                
+                starPos[i*3] = r * Math.sin(phi) * Math.cos(theta);
+                starPos[i*3+1] = r * Math.sin(phi) * Math.sin(theta);
+                starPos[i*3+2] = r * Math.cos(phi);
+
+                // Mezclar colores
+                const randColor = Math.random();
+                let finalColor = color1;
+                if(randColor > 0.7) finalColor = color2;
+                if(randColor > 0.9) finalColor = color3;
+
+                starColors[i*3] = finalColor.r;
+                starColors[i*3+1] = finalColor.g;
+                starColors[i*3+2] = finalColor.b;
+            }
+
+            starGeo.setAttribute('position', new THREE.BufferAttribute(starPos, 3));
+            starGeo.setAttribute('color', new THREE.BufferAttribute(starColors, 3));
+
+            // Material para estrellas
+            const starMat = new THREE.PointsMaterial({
+                size: 0.15,
+                vertexColors: true,
+                transparent: true,
+                opacity: 0.8,
+                sizeAttenuation: true
+            });
+
+            stars = new THREE.Points(starGeo, starMat);
+            scene.add(stars);
+        }
+
+        function onWindowResize() {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        }
+
+        function onScroll() {
+            // Calcular el progreso del scroll respecto a la sección tracker
+            const rect = scrollTracker.getBoundingClientRect();
+            const windowHeight = window.innerHeight;
+            
+            // Queremos medir cuando la parte superior entra en la pantalla hasta que la parte inferior sale
+            const maxScroll = rect.height - windowHeight;
+            
+            // Evitar divisiones por cero o valores negativos indeseados
+            if (maxScroll <= 0) return;
+            
+            // Calcula progreso de 0 a 1
+            let progress = -rect.top / maxScroll;
+            progress = Math.max(0, Math.min(1, progress));
+            
+            scrollProgress = progress;
+            
+            // --- ACTUALIZAR UI ---
+            // Mostrar los textos solo cuando estemos verdaderamente "dentro" de la sección (ej. progress entre 0.1 y 0.9)
+            if(progress > 0.1 && progress < 0.9) {
+                planetTitle.classList.remove('opacity-0', '-translate-y-4');
+                planetDesc.classList.remove('opacity-0', 'translate-y-4');
+            } else {
+                planetTitle.classList.add('opacity-0', '-translate-y-4');
+                planetDesc.classList.add('opacity-0', 'translate-y-4');
+            }
+
+            // --- ACTUALIZAR OBJETIVO 3D ---
+            // El scroll controla cuánto rota el planeta. 
+            // Multiplicamos por Math.PI * 2 (1 vuelta) o más para dar múltiples vueltas.
+            targetRotationY = scrollProgress * Math.PI * 4; // 2 vueltas completas
+            targetRotationX = Math.sin(scrollProgress * Math.PI) * 0.3; // Pequeño cabeceo
+            
+            // Efecto de Dolly (Zoom in/out con la cámara)
+            // Empieza lejos (Z=18), se acerca en el medio (Z=10), y se vuelve a alejar
+            const zoomLevel = Math.sin(scrollProgress * Math.PI); // Parábola invertida: 0 -> 1 -> 0
+            const targetCamZ = 18 - (zoomLevel * 8); 
+            // Lo aplicamos directamente usando tweening suave en animate()
+            camera.userData.targetZ = targetCamZ;
+        }
+
+        function animate() {
+            requestAnimationFrame(animate);
+
+            // 1. Interpolar (Lerp) la rotación del grupo del planeta al objetivo de scroll
+            // Esto hace que la rotación se sienta fluida, con inercia, aunque scrollees de golpe
+            if (planetGroup) {
+                planetGroup.rotation.y += (targetRotationY - planetGroup.rotation.y) * 0.05;
+                
+                // Rotación constante base combinada con el cabeceo del scroll
+                planetGroup.rotation.x += (targetRotationX - planetGroup.rotation.x) * 0.05;
+                
+                // Rotación constante muy lenta para que se sienta vivo incluso si no hay scroll
+                planetGroup.children[0].rotation.y -= 0.001; // El planeta gira sobre su eje independiente de los anillos
+            }
+            
+            // Interpolar sutilmente la posición de la cámara basada en el Scroll
+            if (camera.userData.targetZ) {
+                camera.position.z += (camera.userData.targetZ - camera.position.z) * 0.05;
+            }
+
+            // 2. Rotación lentísima de las estrellas de fondo
+            if (stars) {
+                stars.rotation.y += 0.0003;
+                stars.rotation.x += 0.0001;
+            }
+
+            // 3. Actualizar controles del ratón (OrbitControls)
+            // OrbitControls maneja la posición de la cámara (orbitar), 
+            // mientras que el Scroll maneja la rotación del objeto. No entran en conflicto.
+            controls.update(); 
+
+            // Renderizar la escena final
+            renderer.render(scene, camera);
+        }
+
+        // Iniciar al cargar la página
+        window.onload = init;
+    </script>
+</body>
+</html>
