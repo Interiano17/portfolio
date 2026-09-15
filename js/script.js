@@ -249,8 +249,10 @@ function initNavigation() {
     toggle?.addEventListener("click", () => setMenu(!mobileNav?.classList.contains("open")));
     links.forEach((link) => link.addEventListener("click", () => setMenu(false)));
 
-    const sections = [...document.querySelectorAll("main section[id]")];
     const navigation = [...document.querySelectorAll(".nav-link")];
+    const sections = navigation
+        .map((link) => document.getElementById(link.getAttribute("href").slice(1)))
+        .filter(Boolean);
     const navigationRoot = document.querySelector(".navbar nav");
     const marker = document.createElement("span");
     marker.className = "nav-marker";
@@ -277,24 +279,25 @@ function initNavigation() {
         marker.style.transform = "translateX(" + (linkBounds.left - navigationBounds.left + linkBounds.width / 2 - 3) + "px)";
     };
 
-    setActiveNavigation("hero");
+    const syncNavigation = () => {
+        const position = window.scrollY + window.innerHeight * .35;
+        let currentSection = sections[0];
+        sections.forEach((section) => {
+            if (section.offsetTop <= position) currentSection = section;
+        });
+        if (currentSection) setActiveNavigation(currentSection.id);
+    };
+
+    syncNavigation();
     navigation.forEach((link) => {
         link.addEventListener("click", () => setActiveNavigation(link.getAttribute("href").slice(1)));
     });
     window.addEventListener("resize", () => {
-        if (activeLink) setActiveNavigation(activeLink.getAttribute("href").slice(1));
+        syncNavigation();
     });
     document.fonts?.ready?.then(() => {
-        if (activeLink) setActiveNavigation(activeLink.getAttribute("href").slice(1));
+        syncNavigation();
     });
-    const observer = new IntersectionObserver((entries) => {
-        const visible = entries.filter((entry) => entry.isIntersecting).sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
-        if (!visible) return;
-
-        setActiveNavigation(visible.target.id);
-    }, { rootMargin: "-35% 0px -55% 0px", threshold: [0, .1, .4] });
-
-    sections.forEach((section) => observer.observe(section));
 
     let scheduled = false;
     window.addEventListener("scroll", () => {
@@ -302,6 +305,7 @@ function initNavigation() {
         scheduled = true;
         requestAnimationFrame(() => {
             navbar?.classList.toggle("scrolled", window.scrollY > 24);
+            syncNavigation();
             scheduled = false;
         });
     }, { passive: true });
