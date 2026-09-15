@@ -369,6 +369,7 @@ button { border: 0; background: none; color: inherit; cursor: pointer; font: inh
 
 @media (pointer: coarse), (prefers-reduced-motion: reduce) {
     .system-core-container { transform: none; will-change: auto; }
+    .planet-canvas { cursor: default; touch-action: pan-y; }
 }
 
 #work { position: relative; overflow: hidden; }
