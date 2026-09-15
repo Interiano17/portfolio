@@ -289,9 +289,6 @@ function initNavigation() {
     };
 
     syncNavigation();
-    navigation.forEach((link) => {
-        link.addEventListener("click", () => setActiveNavigation(link.getAttribute("href").slice(1)));
-    });
     window.addEventListener("resize", () => {
         syncNavigation();
     });
