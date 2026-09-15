@@ -118,25 +118,9 @@
                     </div>
                 </div>
 
-                <!-- Interactive System Core -->
-                <div class="system-core-container" id="system-core">
-                    <svg class="system-core-svg" id="core-svg"></svg>
-                    <svg class="system-calibration" viewBox="0 0 100 100" aria-hidden="true">
-                        <circle cx="50" cy="50" r="42"></circle>
-                        <path d="M50 4v12M50 84v12M4 50h12M84 50h12"></path>
-                        <path d="M18 28a38 38 0 0 1 64-6"></path>
-                    </svg>
-                    <div class="core-center-node">PI.</div>
-                    <div class="system-meta system-meta--top">SYSTEM / ACTIVE</div>
-                    <div class="system-meta system-meta--bottom">BUILD / WEB APPLICATIONS</div>
-                    <div class="orbital-node" data-i18n-node="interfaces" data-detail="INTERFACES" data-copy="Responsive web interfaces built with Angular, React, Next.js, Livewire, HTML, and CSS." style="top: 14%; left: 17%;" tabindex="0" role="button" aria-pressed="false" aria-label="Interfaces">Interface</div>
-                    <div class="orbital-node" data-i18n-node="engineering" data-detail="BACKEND LOGIC" data-copy="Business workflows implemented with Laravel, Node.js, Express, PHP, and Django." style="top: 19%; right: 13%;" tabindex="0" role="button" aria-pressed="false" aria-label="Backend logic">Engineering</div>
-                    <div class="orbital-node" data-i18n-node="data" data-detail="DATABASES" data-copy="SQL Server, MySQL, stored procedures, reporting data, and validation safeguards." style="top: 51%; right: 6%;" tabindex="0" role="button" aria-pressed="false" aria-label="Databases">Data</div>
-                    <div class="orbital-node" data-i18n-node="systems" data-detail="DELIVERY" data-copy="Production work supported by Git, GitLab, Docker, Linux, Bash, and Scrum." style="bottom: 16%; right: 22%;" tabindex="0" role="button" aria-pressed="false" aria-label="Delivery">Systems</div>
-                    <div class="orbital-node" data-i18n-node="product" data-detail="OUTCOMES" data-copy="Organizational requirements translated into reliable and usable software solutions." style="bottom: 14%; left: 17%;" tabindex="0" role="button" aria-pressed="false" aria-label="Product outcomes">Product</div>
-                    <div class="system-inspector" id="system-inspector" aria-live="polite">
-                        <span class="system-inspector-label" data-i18n="systemReady">SYSTEM / READY</span>
-                        <p data-i18n="systemHint">Select a layer to inspect its role.</p>
+                <div class="profile-photo-placeholder" id="system-core" role="img" aria-label="Photo placeholder for Pablo Interiano">
+                    <div>
+                        <span>PIC<br>HERE</span>
                     </div>
                 </div>
             </div>
@@ -144,6 +128,21 @@
             <div class="scroll-indicator">
                 <span data-i18n="scroll">SCROLL</span>
                 <svg class="scroll-arrow" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
+            </div>
+        </section>
+
+        <!-- ======================================================================
+           PLANET EXPERIENCE
+           ======================================================================= -->
+        <section class="planet-experience" id="planet-experience" aria-label="Interactive planet experience">
+            <div class="planet-sticky">
+                <div class="planet-canvas" id="planet-canvas" aria-hidden="true"></div>
+                <div class="planet-copy">
+                    <span class="section-label">01 / EXPLORE</span>
+                    <h2>Scroll through the<br><span class="text-accent-dot">system.</span></h2>
+                    <p>Drag to orbit. Scroll to focus on the planet and continue to the selected projects.</p>
+                </div>
+                <div class="planet-instruction" aria-hidden="true">DRAG TO ORBIT · SCROLL TO EXPLORE</div>
             </div>
         </section>
 
@@ -640,6 +639,8 @@
     <!-- ==========================================================================
        JAVASCRIPT LOGIC
        ========================================================================== -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
     <script src="js/script.js"></script>
 </body>
 </html>

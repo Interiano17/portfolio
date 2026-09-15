@@ -80,6 +80,7 @@ document.addEventListener("DOMContentLoaded", () => {
     initTheme();
     initNavigation();
     initSystemDiagram(reducedMotion);
+    initPlanetExperience(reducedMotion);
     initModal();
     initEasterEgg();
 
@@ -112,6 +113,123 @@ function initTheme() {
         localStorage.setItem("portfolio-theme", theme);
         applyTheme();
     });
+}
+
+function initPlanetExperience(reducedMotion) {
+    const container = document.getElementById("planet-canvas");
+    const section = document.getElementById("planet-experience");
+    if (!container || !section || typeof THREE === "undefined" || !THREE.OrbitControls) return;
+
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, .1, 500);
+    camera.position.set(0, 1.2, 17);
+
+    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.toneMapping = THREE.ACESFilmicToneMapping;
+    renderer.toneMappingExposure = 1.1;
+    container.append(renderer.domElement);
+
+    const planetGroup = new THREE.Group();
+    planetGroup.rotation.z = Math.PI / 8;
+    scene.add(planetGroup);
+
+    const textureCanvas = document.createElement("canvas");
+    textureCanvas.width = textureCanvas.height = 512;
+    const textureContext = textureCanvas.getContext("2d");
+    textureContext.fillStyle = "#27080d";
+    textureContext.fillRect(0, 0, 512, 512);
+    for (let index = 0; index < 160; index += 1) {
+        const y = (index * 37) % 512;
+        textureContext.fillStyle = index % 3 ? "rgba(214, 168, 95, .16)" : "rgba(180, 58, 84, .32)";
+        textureContext.fillRect(0, y, 512, 2 + (index % 11));
+    }
+    const planetTexture = new THREE.CanvasTexture(textureCanvas);
+    planetTexture.anisotropy = renderer.capabilities.getMaxAnisotropy();
+    const planet = new THREE.Mesh(
+        new THREE.SphereGeometry(3, 48, 48),
+        new THREE.MeshStandardMaterial({ map: planetTexture, roughness: .7, metalness: .12 })
+    );
+    planetGroup.add(planet);
+
+    [0, 1, 2, 3].forEach((index) => {
+        const inner = 4.15 + index * .46;
+        const ring = new THREE.Mesh(
+            new THREE.RingGeometry(inner, inner + .16, 96),
+            new THREE.MeshStandardMaterial({ color: index % 2 ? 0xd6a85f : 0xb43a54, side: THREE.DoubleSide, transparent: true, opacity: .5, metalness: .7, roughness: .4 })
+        );
+        ring.rotation.x = Math.PI / 2;
+        ring.position.y = (index - 1.5) * .025;
+        planetGroup.add(ring);
+    });
+
+    scene.add(new THREE.AmbientLight(0x49111c, 2));
+    const keyLight = new THREE.DirectionalLight(0xffefd6, 3);
+    keyLight.position.set(8, 7, 6);
+    scene.add(keyLight);
+    const rimLight = new THREE.DirectionalLight(0xb43a54, 2.5);
+    rimLight.position.set(-8, 3, -6);
+    scene.add(rimLight);
+
+    const controls = new THREE.OrbitControls(camera, renderer.domElement);
+    controls.enableDamping = true;
+    controls.dampingFactor = .05;
+    controls.enableZoom = false;
+    controls.enablePan = false;
+    controls.minPolarAngle = Math.PI / 4;
+    controls.maxPolarAngle = Math.PI / 1.5;
+
+    let targetRotationY = 0;
+    let targetRotationX = 0;
+    let targetCameraZ = 17;
+    let visible = false;
+    let frame;
+    let scrollFrame;
+
+    const updateFromScroll = () => {
+        scrollFrame = undefined;
+        const maxScroll = section.offsetHeight - window.innerHeight;
+        const progress = maxScroll > 0 ? Math.min(Math.max(-section.getBoundingClientRect().top / maxScroll, 0), 1) : 0;
+        targetRotationY = progress * Math.PI * 4;
+        targetRotationX = Math.sin(progress * Math.PI) * .25;
+        targetCameraZ = 17 - Math.sin(progress * Math.PI) * 8;
+    };
+    const onScroll = () => {
+        if (!scrollFrame) scrollFrame = requestAnimationFrame(updateFromScroll);
+    };
+    const resize = () => {
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+    };
+    const render = () => {
+        if (!visible) {
+            frame = undefined;
+            return;
+        }
+        planetGroup.rotation.y += (targetRotationY - planetGroup.rotation.y) * .05;
+        planetGroup.rotation.x += (targetRotationX - planetGroup.rotation.x) * .05;
+        planet.rotation.y -= .001;
+        camera.position.z += (targetCameraZ - camera.position.z) * .05;
+        controls.update();
+        renderer.render(scene, camera);
+        frame = requestAnimationFrame(render);
+    };
+
+    updateFromScroll();
+    resize();
+    if (reducedMotion) {
+        controls.enabled = false;
+        renderer.render(scene, camera);
+        return;
+    }
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", resize);
+    new IntersectionObserver(([entry]) => {
+        visible = entry.isIntersecting;
+        if (visible && !frame) render();
+    }, { threshold: 0 }).observe(section);
 }
 
 function initNavigation() {
@@ -496,6 +614,7 @@ function initHeroWorkTransition() {
     const labels = system.querySelectorAll(".orbital-node, .system-meta");
     const diagram = system.querySelector("#core-svg");
     const calibration = system.querySelector(".system-calibration");
+    if (!diagram || !calibration) return;
 
     let scheduled = false;
     window.addEventListener("scroll", () => {
