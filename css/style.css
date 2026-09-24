@@ -356,20 +356,8 @@ button { border: 0; background: none; color: inherit; cursor: pointer; font: inh
 .scroll-indicator { position: absolute; bottom: 26px; left: clamp(20px, 5vw, 64px); display: flex; gap: 8px; align-items: center; color: var(--text-muted); font: .68rem var(--font-mono); letter-spacing: .12em; }
 .scroll-arrow { width: 14px; stroke: currentColor; }
 
-.planet-experience { position: relative; height: 300vh; background: var(--background); }
-.planet-sticky { position: sticky; top: 0; display: grid; height: 100vh; overflow: hidden; align-items: center; }
-.planet-canvas { position: absolute; inset: 0; cursor: grab; }
-.planet-canvas:active { cursor: grabbing; }
-.planet-canvas canvas { display: block; width: 100%; height: 100%; }
-.planet-copy { position: relative; z-index: 1; width: min(440px, calc(100% - 40px)); margin-left: clamp(20px, 9vw, 140px); pointer-events: none; }
-.planet-copy h2 { margin: 12px 0 18px; font-size: clamp(3.2rem, 7vw, 7rem); font-weight: 600; line-height: .86; letter-spacing: -.075em; }
-.planet-copy p { max-width: 340px; color: var(--text-secondary); font-size: .92rem; line-height: 1.55; }
-.planet-instruction { position: absolute; right: clamp(20px, 5vw, 64px); bottom: 28px; z-index: 1; color: var(--text-muted); font: .64rem var(--font-mono); letter-spacing: .1em; pointer-events: none; }
-[data-theme="light"] .planet-experience { background: #E9E5E1; }
-
 @media (pointer: coarse), (prefers-reduced-motion: reduce) {
     .system-core-container { transform: none; will-change: auto; }
-    .planet-canvas { cursor: default; touch-action: pan-y; }
 }
 
 #work { position: relative; overflow: hidden; }
@@ -578,7 +566,6 @@ body.easter-egg .brand-dot { animation: brandPulse 900ms ease-in-out 2; }
     .language-control select, .theme-toggle, .menu-toggle { height: 44px; }
     .section { padding: 82px 0; } .section-header, #work .section-header, #process .section-header, #technologies .section-header, #about .section-header { margin-left: 0; }
     .hero { min-height: auto; padding-top: 125px; } .hero-title { font-size: clamp(4rem, 18vw, 7rem); } .profile-photo-placeholder { min-height: 300px; } .profile-photo-placeholder > div { width: 210px; } .system-calibration { width: 150px; height: 150px; } .orbital-node { font-size: .57rem; } .orbital-node::after { right: 0; left: auto; } .system-meta { font-size: .53rem; }
-    .planet-copy { align-self: start; margin-top: 22vh; } .planet-copy h2 { font-size: clamp(3.1rem, 15vw, 5rem); } .planet-instruction { right: 20px; left: 20px; font-size: .55rem; text-align: center; }
     .project-card--one { margin-inline: -20px; padding: 36px 20px; } .project-visual { min-height: 290px; box-shadow: 10px 10px 0 var(--border-subtle); } .project-title { font-size: clamp(2.3rem, 11vw, 4rem); }
     .process-card { grid-template-columns: 52px 1fr; gap: 6px 16px; padding: 24px 0; } .process-desc { grid-column: 2; } .process-card::after { display: none; }
     .timeline { margin-left: 0; } .timeline::before { left: 12px; } .timeline-item { grid-template-columns: 1fr; gap: 12px; padding-left: 34px; } .timeline-year { text-align: left; } .timeline-content::before { top: 2px; left: -27px; }
